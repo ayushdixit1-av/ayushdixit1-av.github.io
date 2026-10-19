@@ -202,49 +202,97 @@
                 <span class="section-number">03.</span> Featured Projects
             </h2>
             <div class="projects-grid">
-                <!-- Project 1 -->
+                <!-- Project 1: NexGate API Gateway -->
                 <div class="project-card featured">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushdixit1-av/nexgate-api-gateway" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">NexGate — High-Performance API Gateway</h3>
+                    <p class="project-description">
+                        Non-blocking reactive API Gateway engineered from scratch with Java 21, Netty NIO, and Redis. Features dynamic route matching, round-robin &amp; weighted load balancing, JWT/API-key/OAuth2 auth middleware, distributed Redis token-bucket rate limiting, and a 3-state Circuit Breaker with a live dashboard.
+                    </p>
+                    <div class="project-tech">
+                        <span>Java 21</span>
+                        <span>Netty NIO</span>
+                        <span>Redis</span>
+                        <span>Docker</span>
+                    </div>
+                    <div class="project-stats">
+                        <div class="stat">
+                            <span class="stat-value">&lt;2ms</span>
+                            <span class="stat-label">Proxy Overhead</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">18K+</span>
+                            <span class="stat-label">Req / Sec</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value">3-State</span>
+                            <span class="stat-label">Circuit Breaker</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Distributed Task Queue -->
+                <div class="project-card">
+                    <div class="project-header">
+                        <div class="project-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://github.com/ayushdixit1-av/distributed-task-queue" target="_blank">
+                                <i class="fab fa-github"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <h3 class="project-title">Distributed Task Queue</h3>
+                    <p class="project-description">
+                        A production-grade distributed task queue built from scratch in Python and Redis — no Celery, no heavy frameworks. Features async task processing, worker pool concurrency, exponential-backoff auto-retry, dead-letter queue (DLQ), worker heartbeat monitoring, and a real-time web dashboard.
+                    </p>
+                    <div class="project-tech">
+                        <span>Python</span>
+                        <span>Redis</span>
+                        <span>Flask</span>
+                        <span>Docker</span>
+                    </div>
+                </div>
+
+                <!-- Project 3: OS3C Security Command Center -->
+                <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-shield-alt"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/Transformer-based-End-to-End-Web-Application-Firewall-WAF-Pipeline" target="_blank">
+                            <a href="https://github.com/ayushdixit1-av/os3c" target="_blank">
                                 <i class="fab fa-github"></i>
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">Transformer-based WAF Pipeline</h3>
+                    <h3 class="project-title">OS3C — Security Command Center</h3>
                     <p class="project-description">
-                        A deep learning-powered Web Application Firewall that uses a Transformer encoder to detect and mitigate SQL Injection, XSS, CSRF, Path Traversal, and Command Injection in real time — with a full training → inference → FastAPI serving pipeline.
+                        Unified web application security auditing &amp; reconnaissance platform orchestrating 6 engines (Nmap, Nuclei, Subfinder, Amass, Httpx, Katana) via non-blocking FastAPI + Celery worker pipelines and real-time reporting.
                     </p>
                     <div class="project-tech">
-                        <span>Python</span>
-                        <span>PyTorch</span>
                         <span>FastAPI</span>
+                        <span>Celery</span>
+                        <span>Nuclei / Nmap</span>
                         <span>Docker</span>
-                    </div>
-                    <div class="project-stats">
-                        <div class="stat">
-                            <span class="stat-value">98.5%</span>
-                            <span class="stat-label">F1 Score</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value"><5ms</span>
-                            <span class="stat-label">Latency</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-value">15</span>
-                            <span class="stat-label">Attack Types</span>
-                        </div>
                     </div>
                 </div>
 
-                <!-- Project 2 -->
+                <!-- Project 4: VetCrack Knowledge & Exam Platform -->
                 <div class="project-card">
                     <div class="project-header">
                         <div class="project-icon">
-                            <i class="fas fa-search"></i>
+                            <i class="fas fa-graduation-cap"></i>
                         </div>
                         <div class="project-links">
                             <a href="https://github.com/ayushdixit1-av/vet-project" target="_blank">
@@ -252,38 +300,15 @@
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">Web App Security Auditing Toolkit</h3>
+                    <h3 class="project-title">VetCrack — Full-Stack Knowledge &amp; Exam Platform</h3>
                     <p class="project-description">
-                        A security auditing toolkit for web applications — automated vulnerability scanning, reconnaissance, and reporting to help identify weaknesses before attackers do.
+                        Production EdTech ecosystem built with Node.js/Express, React 19, TypeScript &amp; PostgreSQL (30+ REST controllers, 36+ views). Includes a Groq LLM quiz generator, timed mock exams, flashcards, Razorpay subscription billing, and a full Admin CMS.
                     </p>
                     <div class="project-tech">
+                        <span>TypeScript</span>
+                        <span>React 19</span>
                         <span>Node.js</span>
-                        <span>Security</span>
-                        <span>Automation</span>
-                    </div>
-                </div>
-
-                <!-- Project 3 -->
-                <div class="project-card">
-                    <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-bolt"></i>
-                        </div>
-                        <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/Distributed-Task-Queue" target="_blank">
-                                <i class="fab fa-github"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <h3 class="project-title">Distributed Task Queue</h3>
-                    <p class="project-description">
-                        A production-grade distributed task queue built from scratch in Python and Redis — no Celery, no heavy frameworks. Features async task processing, worker pool, auto-retry, dead-letter queue, and a real-time web dashboard.
-                    </p>
-                    <div class="project-tech">
-                        <span>Python</span>
-                        <span>Redis</span>
-                        <span>Flask</span>
-                        <span>Docker</span>
+                        <span>PostgreSQL</span>
                     </div>
                 </div>
             </div>

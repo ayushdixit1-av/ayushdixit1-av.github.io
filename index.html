@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="paper">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,7 +7,7 @@
     <meta name="description" content="Ayush Dixit — Systems, Distributed Backend & Security Engineer.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Newsreader:ital,opsz,wght@1,6..72,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
@@ -15,70 +15,74 @@
     <!-- Top Scroll Progress Hairline -->
     <div class="scroll-progress" id="scrollProgress"></div>
 
-    <!-- Subtle Ambient Light -->
-    <div class="ambient-stage" aria-hidden="true">
-        <div class="ambient-beam"></div>
-        <div class="ambient-grid"></div>
-    </div>
+    <!-- Clean Editorial Header (No AI Glass Pill) -->
+    <header class="site-header" id="siteHeader">
+        <div class="header-inner">
+            <a href="#hero" class="brand-title">
+                <span class="brand-name">Ayush Dixit</span>
+                <span class="brand-role">Systems &amp; Backend</span>
+            </a>
 
-    <!-- Minimal Floating Pill Navigation with Sliding Indicator -->
-    <header class="nav-wrapper">
-        <nav class="pill-nav" id="pillNav">
-            <a href="#hero" class="brand-mark" aria-label="Home">AD</a>
-            <div class="nav-divider"></div>
-            <div class="nav-items" id="navItems">
-                <div class="nav-pill-indicator" id="navIndicator"></div>
+            <nav class="site-nav" id="navItems">
+                <span class="nav-underline" id="navIndicator"></span>
                 <a href="#work" class="nav-link active" data-section="work">Work</a>
-                <a href="#systems" class="nav-link" data-section="systems">Architecture</a>
+                <a href="#systems" class="nav-link" data-section="systems">Principles</a>
                 <a href="#stack" class="nav-link" data-section="stack">Stack</a>
                 <a href="#telemetry" class="nav-link" data-section="telemetry">Activity</a>
                 <a href="#contact" class="nav-link" data-section="contact">Contact</a>
+            </nav>
+
+            <div class="header-controls">
+                <button type="button" class="theme-switch" id="themeSwitch" aria-label="Switch color theme">
+                    <span class="theme-dot"></span>
+                    <span id="themeLabel">Carbon</span>
+                </button>
+                <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="header-gh">
+                    GitHub <i class="fas fa-arrow-up-right-from-square"></i>
+                </a>
             </div>
-            <div class="nav-divider"></div>
-            <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="nav-external" aria-label="GitHub">
-                <i class="fab fa-github"></i>
-            </a>
-        </nav>
+        </div>
     </header>
 
     <main class="main-container">
         <!-- Hero Section -->
         <section class="hero" id="hero">
-            <div class="hero-top stagger-1">
-                <span class="availability-pill">
+            <div class="hero-meta stagger-1">
+                <span class="status-tag">
                     <span class="status-dot"></span>
-                    Available for Systems &amp; Backend Engineering
+                    Available for Backend, Systems &amp; Security Roles
                 </span>
-                <span class="hero-location">India &bull; UTC+5:30</span>
+                <span class="meta-divider">/</span>
+                <span class="hero-location">Kanpur, India (UTC+5:30)</span>
             </div>
 
             <h1 class="hero-headline stagger-2">
-                Ayush Dixit builds <em>high-throughput</em> distributed backends, network proxies, and security engines from the wire up.
+                Engineering <em>high-throughput</em> distributed backends, reactive proxies, and security engines from the wire up.
             </h1>
 
             <p class="hero-lead stagger-3">
-                Focused on low-latency systems engineering in <strong>Java 21</strong>, <strong>Python</strong>, and <strong>TypeScript</strong> — crafting non-blocking Netty API gateways, RESP wire-protocol data stores, fault-tolerant job queues, and automated reconnaissance platforms.
+                I build core infrastructure without black-box shortcuts — writing non-blocking API gateways in <strong>Java 21 &amp; Netty</strong>, Redis RESP wire-protocol servers in <strong>Python &amp; asyncio</strong>, fault-tolerant job queues, and automated reconnaissance platforms.
             </p>
 
             <div class="hero-actions stagger-4">
-                <a href="#work" class="btn-minimal btn-solid">
-                    <span>Selected Work</span>
-                    <i class="fas fa-arrow-down-long"></i>
+                <a href="#work" class="btn-ed btn-ink">
+                    <span>Selected Work (06)</span>
+                    <i class="fas fa-arrow-down"></i>
                 </a>
-                <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="btn-minimal btn-outline">
+                <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="btn-ed btn-paper">
                     <i class="fab fa-github"></i>
                     <span>github.com/ayushdixit1-av</span>
                 </a>
-                <button type="button" class="btn-minimal btn-outline copy-trigger" data-email="ayushdixitvsecpanki@gmail.com">
+                <button type="button" class="btn-ed btn-paper copy-trigger" data-email="ayushdixitvsecpanki@gmail.com">
                     <i class="far fa-copy"></i>
-                    <span class="copy-label">Copy Email</span>
+                    <span class="copy-label">ayushdixitvsecpanki@gmail.com</span>
                 </button>
             </div>
 
-            <!-- Interactive Minimal Code Surface -->
-            <div class="terminal-surface stagger-5 spotlight-card">
+            <!-- High-Contrast Editorial Code Window -->
+            <div class="terminal-surface stagger-5">
                 <div class="terminal-bar">
-                    <div class="terminal-Traffic">
+                    <div class="terminal-dots">
                         <span></span><span></span><span></span>
                     </div>
                     <div class="terminal-tabs" role="tablist">
@@ -129,11 +133,11 @@
             </div>
         </section>
 
-        <!-- 01 / Selected Engineering Work (Interactive Accordion + Filter) -->
+        <!-- 01 / Selected Engineering Work -->
         <section class="section reveal" id="work">
             <div class="section-head-row">
                 <div>
-                    <span class="eyebrow">01 / SELECTED WORK</span>
+                    <span class="eyebrow">01 &mdash; SELECTED WORK</span>
                     <h2 class="section-heading">Completed Production Systems</h2>
                 </div>
                 <div class="filter-bar" role="tablist">
@@ -146,7 +150,7 @@
 
             <div class="work-list" id="workList">
                 <!-- Project 01: NexGate -->
-                <article class="work-item spotlight-card" data-category="systems">
+                <article class="work-item" data-category="systems">
                     <div class="work-main">
                         <div class="work-title-group">
                             <span class="work-index">01</span>
@@ -194,7 +198,7 @@
                             </div>
                             <div class="drawer-specs">
                                 <div><strong>Concurrency Model:</strong> Zero-thread-per-request async Netty channel pipeline</div>
-                                <div><strong>Resilience:</strong> Automatic `CLOSED → OPEN → HALF_OPEN` state machine with health probes</div>
+                                <div><strong>Resilience:</strong> Automatic <code>CLOSED &rarr; OPEN &rarr; HALF_OPEN</code> state machine with health probes</div>
                                 <div><strong>Observability:</strong> Real-time web dashboard tracking P50/P95/P99 latency &amp; error rates</div>
                             </div>
                         </div>
@@ -202,7 +206,7 @@
                 </article>
 
                 <!-- Project 02: Distributed Task Queue -->
-                <article class="work-item spotlight-card" data-category="systems">
+                <article class="work-item" data-category="systems">
                     <div class="work-main">
                         <div class="work-title-group">
                             <span class="work-index">02</span>
@@ -256,7 +260,7 @@
                 </article>
 
                 <!-- Project 03: TinyLite -->
-                <article class="work-item spotlight-card" data-category="systems">
+                <article class="work-item" data-category="systems">
                     <div class="work-main">
                         <div class="work-title-group">
                             <span class="work-index">03</span>
@@ -308,7 +312,7 @@
                 </article>
 
                 <!-- Project 04: OS3C Security Command Center -->
-                <article class="work-item spotlight-card" data-category="security">
+                <article class="work-item" data-category="security">
                     <div class="work-main">
                         <div class="work-title-group">
                             <span class="work-index">04</span>
@@ -361,7 +365,7 @@
                 </article>
 
                 <!-- Project 05: VetCrack -->
-                <article class="work-item spotlight-card" data-category="fullstack">
+                <article class="work-item" data-category="fullstack">
                     <div class="work-main">
                         <div class="work-title-group">
                             <span class="work-index">05</span>
@@ -412,7 +416,7 @@
                 </article>
 
                 <!-- Project 06: SatQuery AI -->
-                <article class="work-item spotlight-card" data-category="fullstack">
+                <article class="work-item" data-category="fullstack">
                     <div class="work-main">
                         <div class="work-title-group">
                             <span class="work-index">06</span>
@@ -466,22 +470,22 @@
 
         <!-- 02 / Architectural Principles -->
         <section class="section reveal" id="systems">
-            <span class="eyebrow">02 / ENGINEERING PRINCIPLES</span>
+            <span class="eyebrow">02 &mdash; ENGINEERING PRINCIPLES</span>
             <h2 class="section-heading">How I Design Systems</h2>
 
             <div class="principles-grid">
-                <div class="principle-card spotlight-card">
-                    <span class="principle-num">01</span>
-                    <h3>Protocol-First Thinking</h3>
+                <div class="principle-card">
+                    <span class="principle-num">01 / PROTOCOL LEVEL</span>
+                    <h3>Wire-First Engineering</h3>
                     <p>Understanding systems at the byte and frame level — from RESP wire serialization and raw TCP backpressure to HTTP/1.1 keep-alive connection pooling in Netty.</p>
                 </div>
-                <div class="principle-card spotlight-card">
-                    <span class="principle-num">02</span>
+                <div class="principle-card">
+                    <span class="principle-num">02 / PERFORMANCE</span>
                     <h3>Predictable Tail Latency</h3>
-                    <p>Replacing blocking thread-per-request bottlenecks with event-driven I/O loops, O(log n) min-heap eviction, and atomic Redis Lua/token-bucket primitives.</p>
+                    <p>Replacing blocking thread-per-request bottlenecks with event-driven I/O loops, O(log n) min-heap eviction, and atomic Redis token-bucket primitives.</p>
                 </div>
-                <div class="principle-card spotlight-card">
-                    <span class="principle-num">03</span>
+                <div class="principle-card">
+                    <span class="principle-num">03 / RESILIENCE</span>
                     <h3>Graceful Degradation</h3>
                     <p>Every distributed dependency fails eventually. I build 3-state circuit breakers, exponential backoff with jitter, heartbeat monitors, and dead-letter queues by default.</p>
                 </div>
@@ -490,7 +494,7 @@
 
         <!-- 03 / Technical Stack -->
         <section class="section reveal" id="stack">
-            <span class="eyebrow">03 / TECHNICAL STACK</span>
+            <span class="eyebrow">03 &mdash; TECHNICAL STACK</span>
             <h2 class="section-heading">Core Technologies</h2>
 
             <div class="stack-table">
@@ -543,7 +547,7 @@
         <section class="section reveal" id="telemetry">
             <div class="section-head-row">
                 <div>
-                    <span class="eyebrow">04 / OPEN SOURCE ACTIVITY</span>
+                    <span class="eyebrow">04 &mdash; OPEN SOURCE ACTIVITY</span>
                     <h2 class="section-heading">GitHub Telemetry</h2>
                 </div>
                 <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="text-link">
@@ -552,13 +556,13 @@
             </div>
 
             <div class="telemetry-grid">
-                <div class="telemetry-box spotlight-card">
-                    <img src="https://streak-stats.demolab.com?user=ayushdixit1-av&theme=tokyonight&hide_border=true&background=09090B" alt="GitHub Streak" loading="lazy">
+                <div class="telemetry-box">
+                    <img src="https://streak-stats.demolab.com?user=ayushdixit1-av&theme=tokyonight&hide_border=true&background=141413" alt="GitHub Streak" loading="lazy">
                 </div>
-                <div class="telemetry-box spotlight-card">
-                    <img src="https://github-readme-stats.vercel.app/api?username=ayushdixit1-av&show_icons=true&theme=tokyonight&hide_border=true&bg_color=09090b&title_color=f4f4f5&icon_color=a1a1aa&text_color=a1a1aa" alt="GitHub Stats" loading="lazy">
+                <div class="telemetry-box">
+                    <img src="https://github-readme-stats.vercel.app/api?username=ayushdixit1-av&show_icons=true&theme=tokyonight&hide_border=true&bg_color=141413&title_color=f0ede6&icon_color=c84b31&text_color=a8a59e" alt="GitHub Stats" loading="lazy">
                 </div>
-                <div class="telemetry-box telemetry-wide spotlight-card">
+                <div class="telemetry-box telemetry-wide">
                     <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=ayushdixit1-av&theme=tokyonight" alt="Contribution Graph" loading="lazy">
                 </div>
             </div>
@@ -566,22 +570,22 @@
 
         <!-- 05 / Contact -->
         <section class="section reveal" id="contact">
-            <div class="contact-minimal spotlight-card">
-                <span class="eyebrow">05 / GET IN TOUCH</span>
-                <h2 class="contact-title">Ready to build resilient systems together.</h2>
+            <div class="contact-minimal">
+                <span class="eyebrow">05 &mdash; GET IN TOUCH</span>
+                <h2 class="contact-title">Let's build resilient systems together.</h2>
                 <p class="contact-sub">
                     Open to Backend, Distributed Systems, and Security Engineering roles. Reach out directly via email or connect on GitHub and LinkedIn.
                 </p>
                 <div class="contact-buttons">
-                    <a href="mailto:ayushdixitvsecpanki@gmail.com" class="btn-minimal btn-solid">
+                    <a href="mailto:ayushdixitvsecpanki@gmail.com" class="btn-ed btn-ink">
                         <span>ayushdixitvsecpanki@gmail.com</span>
                         <i class="fas fa-arrow-up-right-from-square"></i>
                     </a>
-                    <button type="button" class="btn-minimal btn-outline copy-trigger" data-email="ayushdixitvsecpanki@gmail.com">
+                    <button type="button" class="btn-ed btn-paper copy-trigger" data-email="ayushdixitvsecpanki@gmail.com">
                         <i class="far fa-copy"></i>
                         <span class="copy-label">Copy Address</span>
                     </button>
-                    <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" rel="noopener" class="btn-minimal btn-outline">
+                    <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" rel="noopener" class="btn-ed btn-paper">
                         <i class="fab fa-linkedin-in"></i>
                         <span>LinkedIn</span>
                     </a>
@@ -592,7 +596,7 @@
 
     <footer class="footer-minimal">
         <div class="main-container footer-row">
-            <span>&copy; 2026 Ayush Dixit. Engineered with precision.</span>
+            <span>&copy; 2026 Ayush Dixit &mdash; Systems, Backend &amp; Security Engineering</span>
             <div class="footer-links">
                 <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener">GitHub</a>
                 <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" rel="noopener">LinkedIn</a>

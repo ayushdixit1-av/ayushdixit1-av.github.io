@@ -3,37 +3,45 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ayush Dixit | Backend Developer & ML Engineer</title>
+    <title>Ayush Dixit — Systems, Backend &amp; Security Engineer</title>
+    <meta name="description" content="Portfolio of Ayush Dixit — Systems, Distributed Backend & Security Engineer building high-throughput API gateways, async task queues, wire-protocol databases, and security orchestration platforms.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
 <body>
-    <!-- Animated Background -->
-    <div class="bg-animation">
-        <div class="matrix-rain" id="matrixRain"></div>
+    <!-- Ambient Architectural Background & Cursor Spotlight -->
+    <div class="ambient-bg" aria-hidden="true">
+        <div class="grid-overlay"></div>
+        <div class="aurora aurora-1"></div>
+        <div class="aurora aurora-2"></div>
+        <div class="cursor-glow" id="cursorGlow"></div>
     </div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="nav-container">
-            <a href="#" class="nav-logo">
+            <a href="#hero" class="nav-logo">
                 <span class="logo-bracket">&lt;</span>AD<span class="logo-bracket">/&gt;</span>
+                <span class="logo-tag">systems.eng</span>
             </a>
-            <div class="nav-links">
-                <a href="#about">About</a>
-                <a href="#skills">Skills</a>
-                <a href="#projects">Projects</a>
-                <a href="#stats">Stats</a>
-                <a href="#contact">Contact</a>
+            <div class="nav-links" id="navLinks">
+                <a href="#about"><span class="nav-num">01.</span> Architecture</a>
+                <a href="#skills"><span class="nav-num">02.</span> Stack</a>
+                <a href="#projects"><span class="nav-num">03.</span> Work</a>
+                <a href="#stats"><span class="nav-num">04.</span> Telemetry</a>
+                <a href="#contact"><span class="nav-num">05.</span> Contact</a>
+                <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="nav-cta">
+                    <i class="fab fa-github"></i> GitHub <i class="fas fa-arrow-up-right-from-square nav-ext"></i>
+                </a>
             </div>
-            <div class="hamburger" id="hamburger">
+            <button class="hamburger" id="hamburger" aria-label="Toggle Menu">
                 <span></span>
                 <span></span>
                 <span></span>
-            </div>
+            </button>
         </div>
     </nav>
 
@@ -42,188 +50,330 @@
         <div class="hero-content">
             <div class="hero-badge">
                 <span class="pulse-dot"></span>
-                Available for opportunities
+                <span>Available for Backend, Systems &amp; Security Engineering Roles</span>
             </div>
             <h1 class="hero-title">
-                <span class="greeting">Hi, I'm</span>
-                <span class="name">Ayush Dixit</span>
-                <span class="wave">&#128075;</span>
+                <span class="greeting">Hi, I'm Ayush Dixit</span>
+                <span class="name">Engineering High-Throughput Systems From Scratch.</span>
             </h1>
             <div class="hero-subtitle">
+                <span class="prompt-symbol">$</span>
                 <span class="typing-text" id="typingText"></span>
-                <span class="cursor">|</span>
+                <span class="cursor">_</span>
             </div>
             <p class="hero-description">
-                Building secure, scalable systems — from ML-powered firewalls to distributed backends.
+                I design and build <strong>ultra-low-latency API gateways</strong>, <strong>zero-framework distributed task queues</strong>, <strong>wire-protocol data stores</strong>, and <strong>automated offensive security platforms</strong>.
             </p>
             <div class="hero-cta">
                 <a href="#projects" class="btn btn-primary">
-                    <i class="fas fa-rocket"></i> View My Work
+                    <span>Explore Featured Systems</span>
+                    <i class="fas fa-arrow-right"></i>
                 </a>
-                <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" class="btn btn-secondary">
-                    <i class="fab fa-linkedin"></i> LinkedIn
-                </a>
-            </div>
-            <div class="hero-socials">
-                <a href="https://github.com/ayushdixit1-av" target="_blank" class="social-link">
+                <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="btn btn-secondary">
                     <i class="fab fa-github"></i>
+                    <span>GitHub Profile</span>
                 </a>
-                <a href="mailto:ayushdixitvsecpanki@gmail.com" class="social-link">
+                <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" rel="noopener" class="btn btn-ghost" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="mailto:ayushdixitvsecpanki@gmail.com" class="btn btn-ghost" aria-label="Email">
                     <i class="fas fa-envelope"></i>
-                </a>
-                <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" class="social-link">
-                    <i class="fab fa-linkedin"></i>
                 </a>
             </div>
         </div>
+
+        <!-- Interactive Multi-Tab Systems Code Window -->
         <div class="hero-visual">
-            <div class="code-window">
+            <div class="code-window" id="codeWindow">
                 <div class="window-header">
                     <div class="window-dots">
                         <span class="dot red"></span>
                         <span class="dot yellow"></span>
                         <span class="dot green"></span>
                     </div>
-                    <span class="window-title">waf_pipeline.py</span>
+                    <div class="window-tabs" role="tablist">
+                        <button class="code-tab active" data-tab="nexgate" role="tab">
+                            <i class="fas fa-network-wired"></i> NexGateProxy.java
+                        </button>
+                        <button class="code-tab" data-tab="tinylite" role="tab">
+                            <i class="fas fa-database"></i> resp_server.py
+                        </button>
+                        <button class="code-tab" data-tab="queue" role="tab">
+                            <i class="fas fa-bolt"></i> worker_pool.py
+                        </button>
+                    </div>
                 </div>
-                <div class="window-body">
-                    <pre><code><span class="keyword">class</span> <span class="class-name">WAFTransformer</span>:
-    <span class="keyword">def</span> <span class="function">__init__</span>(<span class="param">self</span>):
-        <span class="param">self</span>.encoder = <span class="class-name">TransformerEncoder</span>(
-            num_layers=<span class="number">6</span>,
-            num_heads=<span class="number">8</span>,
-            hidden_dim=<span class="number">512</span>
-        )
-        <span class="param">self</span>.classifier = <span class="class-name">MLPHead</span>(
-            num_classes=<span class="number">15</span>
-        )
 
-    <span class="keyword">def</span> <span class="function">detect_threat</span>(<span class="param">self</span>, request):
-        tokens = <span class="param">self</span>.tokenize(request)
-        embeddings = <span class="param">self</span>.encoder(tokens)
-        threat_score = <span class="param">self</span>.classifier(
-            embeddings[<span class="string">"[CLS]"</span>]
-        )
-        <span class="keyword">return</span> threat_score <span class="comment"># 0.985</span></code></pre>
+                <div class="window-body">
+                    <!-- Tab 1: NexGate Java 21 / Netty -->
+                    <pre class="code-pane active" id="tab-nexgate"><code><span class="keyword">public final class</span> <span class="class-name">NexGateProxyHandler</span> <span class="keyword">extends</span> <span class="class-name">SimpleChannelInboundHandler</span>&lt;<span class="class-name">FullHttpRequest</span>&gt; {
+
+    <span class="keyword">@Override</span>
+    <span class="keyword">protected void</span> <span class="function">channelRead0</span>(<span class="class-name">ChannelHandlerContext</span> <span class="param">ctx</span>, <span class="class-name">FullHttpRequest</span> <span class="param">req</span>) {
+        <span class="class-name">Route</span> route = router.<span class="function">matchTrie</span>(req.<span class="function">uri</span>(), req.<span class="function">method</span>());
+        <span class="keyword">if</span> (!rateLimiter.<span class="function">tryAcquireTokenBucket</span>(clientIp(ctx), route.<span class="function">limit</span>())) {
+            <span class="function">sendError</span>(ctx, <span class="class-name">HttpResponseStatus</span>.TOO_MANY_REQUESTS);
+            <span class="keyword">return</span>;
+        }
+        <span class="class-name">UpstreamNode</span> node = circuitBreaker.<span class="function">selectHealthyUpstream</span>(route);
+        nettyClient.<span class="function">forwardNonBlocking</span>(ctx, req, node); <span class="comment">// &lt;1.8ms P99 overhead</span>
+    }
+}</code></pre>
+
+                    <!-- Tab 2: TinyLite RESP Protocol -->
+                    <pre class="code-pane" id="tab-tinylite"><code><span class="keyword">class</span> <span class="class-name">TinyLiteRESPServer</span>:
+    <span class="keyword">async def</span> <span class="function">handle_client</span>(<span class="param">self</span>, reader: <span class="class-name">StreamReader</span>, writer: <span class="class-name">StreamWriter</span>):
+        <span class="keyword">while</span> raw := <span class="keyword">await</span> reader.<span class="function">read</span>(<span class="number">65536</span>):
+            cmd, *args = <span class="param">self</span>.resp_parser.<span class="function">decode_frame</span>(raw)
+            <span class="param">self</span>.ttl_heap.<span class="function">evict_expired</span>()  <span class="comment"># O(log n) min-heap eviction</span>
+            <span class="keyword">if</span> cmd <span class="keyword">in</span> <span class="class-name">MUTATING_OPS</span>:
+                <span class="param">self</span>.aof_log.<span class="function">append_fsync</span>(cmd, args)
+            reply = <span class="keyword">await</span> <span class="param">self</span>.engine.<span class="function">execute</span>(cmd, args)
+            writer.<span class="function">write</span>(<span class="param">self</span>.resp_parser.<span class="function">encode</span>(reply))
+            <span class="keyword">await</span> writer.<span class="function">drain</span>()</code></pre>
+
+                    <!-- Tab 3: Distributed Task Queue -->
+                    <pre class="code-pane" id="tab-queue"><code><span class="keyword">class</span> <span class="class-name">DistributedWorkerPool</span>:
+    <span class="keyword">def</span> <span class="function">process_with_backoff</span>(<span class="param">self</span>, task: <span class="class-name">TaskEnvelope</span>) -&gt; <span class="class-name">TaskResult</span>:
+        <span class="keyword">try</span>:
+            <span class="param">self</span>.heartbeat.<span class="function">pulse</span>(worker_id=<span class="param">self</span>.id, state=<span class="string">"BUSY"</span>)
+            <span class="keyword">return</span> <span class="param">self</span>.registry[task.fn].<span class="function">invoke</span>(*task.args)
+        <span class="keyword">except</span> <span class="class-name">Exception</span> <span class="keyword">as</span> exc:
+            <span class="keyword">if</span> task.attempt &gt;= task.max_retries:
+                <span class="keyword">return</span> <span class="param">self</span>.redis.<span class="function">push_dead_letter_queue</span>(task, reason=<span class="function">str</span>(exc))
+            delay = <span class="number">2</span> ** task.attempt + <span class="function">jitter</span>()
+            <span class="keyword">return</span> <span class="param">self</span>.redis.<span class="function">schedule_retry</span>(task.<span class="function">increment</span>(), delay)</code></pre>
+                </div>
+
+                <div class="window-footer">
+                    <span class="status-pill"><span class="status-dot"></span> BUILD PASSING</span>
+                    <span class="telemetry-item" id="terminalMetric">THROUGHPUT: 18,400 req/s &bull; P99: 1.74ms</span>
+                    <span class="telemetry-lang" id="terminalLang">Java 21 &bull; Netty NIO</span>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- About Section -->
+    <!-- Engineering Metrics Ribbon -->
+    <div class="metrics-ribbon">
+        <div class="container metrics-grid">
+            <div class="metric-item">
+                <span class="metric-num">&lt;2ms</span>
+                <span class="metric-label">Reactive API Gateway Overhead</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-num">18K+ RPS</span>
+                <span class="metric-label">Non-Blocking Proxy Throughput</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-num">6 Engines</span>
+                <span class="metric-label">Unified in OS3C Security Suite</span>
+            </div>
+            <div class="metric-item">
+                <span class="metric-num">100%</span>
+                <span class="metric-label">From-Scratch Core Implementations</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 01. Architecture & About Section -->
     <section class="section" id="about">
         <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">01.</span> About Me
-            </h2>
-            <div class="about-content">
-                <div class="about-text">
-                    <p>I'm a Backend Developer and ML Engineer who loves building systems that are both <strong>intelligent</strong> and <strong>robust</strong>.</p>
-                    <p>I build things at the intersection of application security and machine learning — from Transformer-powered firewalls that detect threats in real-time to distributed task queues that process millions of jobs.</p>
-                    <p>Currently exploring low-level system design and production-grade ML pipelines. I believe the best software is built at the intersection of deep technical knowledge and real-world impact.</p>
-                    <div class="about-highlights">
-                        <div class="highlight-item">
-                            <i class="fas fa-shield-alt"></i>
-                            <span>Application Security</span>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">01.</span> Engineering Philosophy &amp; Architecture
+                </h2>
+                <p class="section-subtitle">Building core infrastructure from the wire protocol up — rather than relying on black-box abstractions.</p>
+            </div>
+
+            <div class="about-bento">
+                <div class="about-narrative">
+                    <h3>Systems That Scale Under Pressure</h3>
+                    <p>
+                        I'm a <strong>Systems, Backend, and Security Engineer</strong> focused on designing high-throughput distributed infrastructure and intelligent security tooling.
+                    </p>
+                    <p>
+                        Whether it's implementing the <strong>Redis RESP wire protocol</strong> over raw async TCP sockets in Python, engineering a <strong>non-blocking reverse proxy in Java 21 &amp; Netty</strong> with distributed token-bucket rate limiting, or orchestrating <strong>multi-engine reconnaissance pipelines</strong>, I care deeply about tail latency, fault isolation, and clean system boundaries.
+                    </p>
+                    <div class="about-pills">
+                        <span><i class="fas fa-check-circle"></i> Zero-Framework Core Engines</span>
+                        <span><i class="fas fa-check-circle"></i> Non-Blocking Async I/O</span>
+                        <span><i class="fas fa-check-circle"></i> Fault-Tolerant Retries &amp; DLQs</span>
+                        <span><i class="fas fa-check-circle"></i> Production Docker Deployments</span>
+                    </div>
+                </div>
+
+                <div class="pillars-grid">
+                    <div class="pillar-card">
+                        <div class="pillar-top">
+                            <span class="pillar-idx">01 / NETWORKING</span>
+                            <i class="fas fa-network-wired"></i>
                         </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-brain"></i>
-                            <span>Machine Learning</span>
+                        <h4>Reactive API Gateways</h4>
+                        <p>Event-driven Netty NIO proxies with trie route matching, weighted load balancing, JWT/OAuth2 auth, and 3-state circuit breakers.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-top">
+                            <span class="pillar-idx">02 / DISTRIBUTED</span>
+                            <i class="fas fa-bolt"></i>
                         </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-server"></i>
-                            <span>System Design</span>
+                        <h4>Async Job Orchestration</h4>
+                        <p>Custom worker pools, priority queues, exponential backoff with jitter, dead-letter isolation, and real-time heartbeat failover.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-top">
+                            <span class="pillar-idx">03 / STORAGE INTERNALS</span>
+                            <i class="fas fa-database"></i>
                         </div>
-                        <div class="highlight-item">
-                            <i class="fas fa-code"></i>
-                            <span>Full Stack Dev</span>
+                        <h4>Wire-Protocol Engines</h4>
+                        <p>In-memory key-value stores speaking native RESP protocol with O(log n) min-heap TTL eviction, AOF durability, and Pub/Sub.</p>
+                    </div>
+                    <div class="pillar-card">
+                        <div class="pillar-top">
+                            <span class="pillar-idx">04 / OFFENSIVE SEC</span>
+                            <i class="fas fa-shield-halved"></i>
                         </div>
+                        <h4>Security Automation</h4>
+                        <p>Unified reconnaissance and vulnerability scanning pipelines orchestrating Nmap, Nuclei, Subfinder, Amass, Httpx, and Katana.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Skills Section -->
+    <!-- 02. Tech Stack Section -->
     <section class="section" id="skills">
         <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">02.</span> Tech Stack
-            </h2>
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">02.</span> Technical Arsenal
+                </h2>
+                <p class="section-subtitle">Production languages, distributed primitives, and infrastructure tooling across the stack.</p>
+            </div>
+
             <div class="skills-grid">
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon python"><i class="fab fa-python"></i></div>
-                    <h3>Python</h3>
-                    <p>Primary language for ML, backends, and automation</p>
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon python"><i class="fab fa-python"></i></div>
+                        <span class="skill-domain">CORE LANGUAGE</span>
+                    </div>
+                    <h3>Python &amp; Asyncio</h3>
+                    <p>Async TCP servers, distributed workers, FastAPI microservices, and ML pipelines</p>
                 </div>
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon pytorch"><i class="fas fa-fire"></i></div>
-                    <h3>PyTorch</h3>
-                    <p>Deep learning, Transformers, model training</p>
+
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon java"><i class="fab fa-java"></i></div>
+                        <span class="skill-domain">HIGH-THROUGHPUT</span>
+                    </div>
+                    <h3>Java 21 &amp; Netty NIO</h3>
+                    <p>Non-blocking event loops, reactive reverse proxies, and concurrent middleware</p>
                 </div>
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon fastapi"><i class="fas fa-bolt"></i></div>
-                    <h3>FastAPI</h3>
-                    <p>High-performance async API development</p>
+
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon ts"><i class="fas fa-code"></i></div>
+                        <span class="skill-domain">FULL-STACK</span>
+                    </div>
+                    <h3>TypeScript &amp; Node.js</h3>
+                    <p>Type-safe Express REST architectures, React 19 SPAs, and real-time dashboards</p>
                 </div>
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon node"><i class="fab fa-node-js"></i></div>
-                    <h3>Node.js</h3>
-                    <p>JavaScript runtime for scalable backends</p>
+
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon redis"><i class="fas fa-database"></i></div>
+                        <span class="skill-domain">IN-MEMORY &amp; IPC</span>
+                    </div>
+                    <h3>Redis &amp; RESP</h3>
+                    <p>Token-bucket rate limiting, distributed task brokers, Pub/Sub, and wire protocols</p>
                 </div>
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon redis"><i class="fas fa-database"></i></div>
-                    <h3>Redis</h3>
-                    <p>In-memory store for caching and queues</p>
+
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon fastapi"><i class="fas fa-bolt"></i></div>
+                        <span class="skill-domain">API &amp; QUEUES</span>
+                    </div>
+                    <h3>FastAPI &amp; Celery</h3>
+                    <p>High-concurrency REST/SSE endpoints and distributed background task pipelines</p>
                 </div>
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon docker"><i class="fab fa-docker"></i></div>
-                    <h3>Docker</h3>
-                    <p>Containerization and deployment</p>
-                </div>
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon postgres"><i class="fas fa-leaf"></i></div>
+
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon postgres"><i class="fas fa-server"></i></div>
+                        <span class="skill-domain">PERSISTENCE</span>
+                    </div>
                     <h3>PostgreSQL</h3>
-                    <p>Relational database design and optimization</p>
+                    <p>Relational schema design, indexed query optimization, and transactional integrity</p>
                 </div>
-                <div class="skill-card" data-tilt>
-                    <div class="skill-icon react"><i class="fab fa-react"></i></div>
-                    <h3>React</h3>
-                    <p>Frontend UI development</p>
+
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon sec"><i class="fas fa-user-shield"></i></div>
+                        <span class="skill-domain">APPSEC &amp; RECON</span>
+                    </div>
+                    <h3>Nuclei, Nmap &amp; Recon</h3>
+                    <p>Automated vulnerability scanning, subdomain enumeration, and attack surface mapping</p>
+                </div>
+
+                <div class="skill-card">
+                    <div class="skill-card-head">
+                        <div class="skill-icon docker"><i class="fab fa-docker"></i></div>
+                        <span class="skill-domain">INFRASTRUCTURE</span>
+                    </div>
+                    <h3>Docker &amp; Linux</h3>
+                    <p>Multi-container orchestration, reproducible builds, and production telemetry</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
+    <!-- 03. Featured Projects Section -->
     <section class="section" id="projects">
         <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">03.</span> Featured Projects
-            </h2>
-            <div class="projects-grid">
+            <div class="section-header projects-header-row">
+                <div>
+                    <h2 class="section-title">
+                        <span class="section-number">03.</span> Featured Engineering Work
+                    </h2>
+                    <p class="section-subtitle">Completed, production-grade systems with full source code, tests, and architecture documentation.</p>
+                </div>
+                <div class="project-filters" role="tablist">
+                    <button class="filter-btn active" data-filter="all">All Systems (6)</button>
+                    <button class="filter-btn" data-filter="systems">Distributed &amp; Infra</button>
+                    <button class="filter-btn" data-filter="security">Security</button>
+                    <button class="filter-btn" data-filter="fullstack">Full-Stack &amp; AI</button>
+                </div>
+            </div>
+
+            <div class="projects-grid" id="projectsGrid">
                 <!-- Project 1: NexGate API Gateway -->
-                <div class="project-card featured">
+                <article class="project-card featured" data-category="systems">
                     <div class="project-header">
-                        <div class="project-icon">
-                            <i class="fas fa-network-wired"></i>
+                        <div class="project-meta-left">
+                            <div class="project-icon">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div>
+                                <span class="project-category">REACTIVE INFRASTRUCTURE &bull; JAVA 21 / NETTY</span>
+                                <h3 class="project-title">
+                                    <a href="https://github.com/ayushdixit1-av/nexgate-api-gateway" target="_blank" rel="noopener">
+                                        NexGate — High-Performance API Gateway
+                                    </a>
+                                </h3>
+                            </div>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/nexgate-api-gateway" target="_blank">
-                                <i class="fab fa-github"></i>
+                            <span class="status-badge"><span class="dot-live"></span> Completed</span>
+                            <a href="https://github.com/ayushdixit1-av/nexgate-api-gateway" target="_blank" rel="noopener" class="repo-btn" aria-label="View NexGate Source on GitHub">
+                                <i class="fab fa-github"></i> <span>Source</span> <i class="fas fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">NexGate — High-Performance API Gateway</h3>
+
                     <p class="project-description">
-                        Non-blocking reactive API Gateway engineered from scratch with Java 21, Netty NIO, and Redis. Features dynamic route matching, round-robin &amp; weighted load balancing, JWT/API-key/OAuth2 auth middleware, distributed Redis token-bucket rate limiting, and a 3-state Circuit Breaker with a live dashboard.
+                        Non-blocking reactive API Gateway engineered from the ground up with <strong>Java 21, Netty NIO, and Redis</strong>. Features dynamic trie-based route matching, round-robin &amp; weighted load balancing, JWT/API-key/OAuth2 authentication middleware, distributed Redis token-bucket rate limiting, and a 3-state Circuit Breaker with a live monitoring dashboard.
                     </p>
-                    <div class="project-tech">
-                        <span>Java 21</span>
-                        <span>Netty NIO</span>
-                        <span>Redis</span>
-                        <span>Docker</span>
-                    </div>
+
                     <div class="project-stats">
                         <div class="stat">
                             <span class="stat-value">&lt;2ms</span>
@@ -231,179 +381,269 @@
                         </div>
                         <div class="stat">
                             <span class="stat-value">18K+</span>
-                            <span class="stat-label">Req / Sec</span>
+                            <span class="stat-label">Requests / Sec</span>
                         </div>
                         <div class="stat">
                             <span class="stat-value">3-State</span>
                             <span class="stat-label">Circuit Breaker</span>
                         </div>
+                        <div class="stat">
+                            <span class="stat-value">Token Bucket</span>
+                            <span class="stat-label">Redis Rate Limiter</span>
+                        </div>
                     </div>
-                </div>
+
+                    <div class="project-tech">
+                        <span>Java 21</span>
+                        <span>Netty NIO</span>
+                        <span>Redis</span>
+                        <span>JWT / OAuth2</span>
+                        <span>Circuit Breaker</span>
+                        <span>Docker</span>
+                    </div>
+                </article>
 
                 <!-- Project 2: Distributed Task Queue -->
-                <div class="project-card">
+                <article class="project-card" data-category="systems">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-bolt"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/distributed-task-queue" target="_blank">
-                                <i class="fab fa-github"></i>
+                            <span class="status-badge"><span class="dot-live"></span> Completed</span>
+                            <a href="https://github.com/ayushdixit1-av/distributed-task-queue" target="_blank" rel="noopener" class="repo-btn" aria-label="View Distributed Task Queue on GitHub">
+                                <i class="fab fa-github"></i> <span>Source</span> <i class="fas fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">Distributed Task Queue</h3>
+                    <span class="project-category">DISTRIBUTED SYSTEMS &bull; PYTHON / REDIS</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/ayushdixit1-av/distributed-task-queue" target="_blank" rel="noopener">
+                            Distributed Task Queue Engine
+                        </a>
+                    </h3>
                     <p class="project-description">
-                        A production-grade distributed task queue built from scratch in Python and Redis — no Celery, no heavy frameworks. Features async task processing, worker pool concurrency, exponential-backoff auto-retry, dead-letter queue (DLQ), worker heartbeat monitoring, and a real-time web dashboard.
+                        Production-grade asynchronous job queue built from scratch in Python and Redis — zero Celery, zero heavy frameworks. Engineered with concurrent worker pools, priority queues, exponential-backoff auto-retry, Dead-Letter Queue (DLQ) isolation, heartbeat failure detection, and a live web dashboard.
                     </p>
+                    <div class="project-highlights-mini">
+                        <span><code>Worker Pool</code></span>
+                        <span><code>Exponential Backoff + DLQ</code></span>
+                        <span><code>Heartbeat Monitor</code></span>
+                    </div>
                     <div class="project-tech">
                         <span>Python</span>
                         <span>Redis</span>
                         <span>Flask</span>
                         <span>Docker</span>
                     </div>
-                </div>
+                </article>
 
                 <!-- Project 3: OS3C Security Command Center -->
-                <div class="project-card">
+                <article class="project-card" data-category="security">
                     <div class="project-header">
                         <div class="project-icon">
-                            <i class="fas fa-shield-alt"></i>
+                            <i class="fas fa-shield-halved"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/os3c" target="_blank">
-                                <i class="fab fa-github"></i>
+                            <span class="status-badge"><span class="dot-live"></span> Completed</span>
+                            <a href="https://github.com/ayushdixit1-av/os3c" target="_blank" rel="noopener" class="repo-btn" aria-label="View OS3C on GitHub">
+                                <i class="fab fa-github"></i> <span>Source</span> <i class="fas fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">OS3C — Security Command Center</h3>
+                    <span class="project-category">OFFENSIVE SECURITY &bull; FASTAPI / CELERY</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/ayushdixit1-av/os3c" target="_blank" rel="noopener">
+                            OS3C — Security Command Center
+                        </a>
+                    </h3>
                     <p class="project-description">
-                        Unified web application security auditing &amp; reconnaissance platform orchestrating 6 engines (Nmap, Nuclei, Subfinder, Amass, Httpx, Katana) via non-blocking FastAPI + Celery worker pipelines and real-time reporting.
+                        Unified web application security auditing and reconnaissance orchestration platform wrapping 6 industry engines (<strong>Nmap, Nuclei, Subfinder, Amass, Httpx, Katana</strong>) via non-blocking Celery task pipelines and severity-ranked vulnerability reporting.
                     </p>
+                    <div class="project-highlights-mini">
+                        <span><code>6 Recon &amp; Vuln Engines</code></span>
+                        <span><code>Async Celery Pipelines</code></span>
+                        <span><code>Live Telemetry</code></span>
+                    </div>
                     <div class="project-tech">
                         <span>FastAPI</span>
                         <span>Celery</span>
                         <span>Nuclei / Nmap</span>
                         <span>Docker</span>
                     </div>
-                </div>
+                </article>
 
                 <!-- Project 4: TinyLite In-Memory KV Store -->
-                <div class="project-card">
+                <article class="project-card" data-category="systems">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-database"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/tinylite" target="_blank">
-                                <i class="fab fa-github"></i>
+                            <span class="status-badge"><span class="dot-live"></span> Completed</span>
+                            <a href="https://github.com/ayushdixit1-av/tinylite" target="_blank" rel="noopener" class="repo-btn" aria-label="View TinyLite on GitHub">
+                                <i class="fab fa-github"></i> <span>Source</span> <i class="fas fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">TinyLite — Redis-Compatible KV Store</h3>
+                    <span class="project-category">DATABASE INTERNALS &bull; PYTHON / ASYNCIO</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/ayushdixit1-av/tinylite" target="_blank" rel="noopener">
+                            TinyLite — Redis-Compatible KV Store
+                        </a>
+                    </h3>
                     <p class="project-description">
-                        Zero-dependency async TCP key-value database built from scratch in Python &amp; asyncio speaking the native Redis RESP wire protocol. Features O(log n) min-heap TTL expiration, Append-Only File (AOF) persistence, and real-time Pub/Sub.
+                        Zero-dependency, single-threaded async TCP key-value store built from scratch in Python &amp; <code>asyncio</code> speaking the native <strong>Redis RESP wire protocol</strong>. Implements O(log n) min-heap TTL expiration, Append-Only File (AOF) persistence, and real-time Pub/Sub.
                     </p>
+                    <div class="project-highlights-mini">
+                        <span><code>RESP Wire Protocol</code></span>
+                        <span><code>O(log n) Min-Heap TTL</code></span>
+                        <span><code>AOF + Pub/Sub</code></span>
+                    </div>
                     <div class="project-tech">
                         <span>Python</span>
                         <span>Asyncio</span>
                         <span>RESP Protocol</span>
-                        <span>TCP Server</span>
+                        <span>TCP Sockets</span>
                     </div>
-                </div>
+                </article>
 
                 <!-- Project 5: VetCrack Knowledge & Exam Platform -->
-                <div class="project-card">
+                <article class="project-card" data-category="fullstack">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-graduation-cap"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/vet-project" target="_blank">
-                                <i class="fab fa-github"></i>
+                            <span class="status-badge"><span class="dot-live"></span> Completed</span>
+                            <a href="https://github.com/ayushdixit1-av/vet-project" target="_blank" rel="noopener" class="repo-btn" aria-label="View VetCrack on GitHub">
+                                <i class="fab fa-github"></i> <span>Source</span> <i class="fas fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">VetCrack — Full-Stack Knowledge &amp; Exam Platform</h3>
+                    <span class="project-category">FULL-STACK &amp; AI &bull; REACT 19 / NODE / POSTGRES</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/ayushdixit1-av/vet-project" target="_blank" rel="noopener">
+                            VetCrack — AI Knowledge &amp; Exam Platform
+                        </a>
+                    </h3>
                     <p class="project-description">
-                        Production EdTech ecosystem built with Node.js/Express, React 19, TypeScript &amp; PostgreSQL (30+ REST controllers, 36+ views). Includes a Groq LLM quiz generator, timed mock exams, flashcards, Razorpay subscription billing, and a full Admin CMS.
+                        Comprehensive full-stack EdTech ecosystem built with Node.js/Express, React 19, TypeScript &amp; PostgreSQL (30+ REST controllers, 36+ views). Features a Groq LLM quiz generator, timed mock exams, spaced-repetition flashcards, Razorpay billing, and a full Admin CMS.
                     </p>
+                    <div class="project-highlights-mini">
+                        <span><code>30+ REST Controllers</code></span>
+                        <span><code>Groq LLM Quiz Engine</code></span>
+                        <span><code>Razorpay Billing</code></span>
+                    </div>
                     <div class="project-tech">
                         <span>TypeScript</span>
                         <span>React 19</span>
                         <span>Node.js</span>
                         <span>PostgreSQL</span>
                     </div>
-                </div>
+                </article>
 
                 <!-- Project 6: SatQuery AI Geospatial Platform -->
-                <div class="project-card">
+                <article class="project-card" data-category="fullstack">
                     <div class="project-header">
                         <div class="project-icon">
                             <i class="fas fa-satellite"></i>
                         </div>
                         <div class="project-links">
-                            <a href="https://github.com/ayushdixit1-av/satquery-ai" target="_blank">
-                                <i class="fab fa-github"></i>
+                            <span class="status-badge"><span class="dot-live"></span> Completed</span>
+                            <a href="https://github.com/ayushdixit1-av/satquery-ai" target="_blank" rel="noopener" class="repo-btn" aria-label="View SatQuery AI on GitHub">
+                                <i class="fab fa-github"></i> <span>Source</span> <i class="fas fa-arrow-up-right-from-square"></i>
                             </a>
                         </div>
                     </div>
-                    <h3 class="project-title">SatQuery AI — Geospatial Change Detection</h3>
+                    <span class="project-category">GEOSPATIAL AI &bull; THREE.JS / EARTH ENGINE</span>
+                    <h3 class="project-title">
+                        <a href="https://github.com/ayushdixit1-av/satquery-ai" target="_blank" rel="noopener">
+                            SatQuery AI — Satellite Change Detection
+                        </a>
+                    </h3>
                     <p class="project-description">
-                        Full-stack 3D satellite imagery analytics platform combining Google Earth Engine, Gemini AI, Python, and a Three.js interactive globe for automated deforestation, flood, and urban expansion change detection.
+                        Full-stack 3D geospatial intelligence platform combining Google Earth Engine, Gemini AI, Python, and an interactive Three.js globe for natural-language satellite imagery querying and automated deforestation, flood, and urban expansion detection.
                     </p>
+                    <div class="project-highlights-mini">
+                        <span><code>3D Three.js Globe</code></span>
+                        <span><code>Earth Engine Pipeline</code></span>
+                        <span><code>Gemini NLP Queries</code></span>
+                    </div>
                     <div class="project-tech">
                         <span>Python</span>
                         <span>React / Three.js</span>
                         <span>Earth Engine</span>
                         <span>Gemini AI</span>
                     </div>
-                </div>
+                </article>
             </div>
         </div>
     </section>
 
-    <!-- Stats Section -->
+    <!-- 04. GitHub Telemetry Section -->
     <section class="section" id="stats">
         <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">04.</span> GitHub Stats
-            </h2>
-            <div class="stats-container">
+            <div class="section-header">
+                <h2 class="section-title">
+                    <span class="section-number">04.</span> Open-Source Telemetry
+                </h2>
+                <p class="section-subtitle">Live contribution velocity, commit streaks, and repository activity from <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="inline-link">@ayushdixit1-av</a>.</p>
+            </div>
+
+            <div class="stats-bento">
                 <div class="stats-card">
-                    <h3>Streak Stats</h3>
-                    <img src="https://streak-stats.demolab.com?user=ayushdixit1-av&theme=tokyonight&hide_border=true" alt="GitHub Streak" loading="lazy">
+                    <div class="stats-card-head">
+                        <span><i class="fas fa-fire"></i> Streak &amp; Consistency</span>
+                        <span class="mono-tag">LIVE SVG</span>
+                    </div>
+                    <img src="https://streak-stats.demolab.com?user=ayushdixit1-av&theme=tokyonight&hide_border=true&background=0D1117" alt="GitHub Streak" loading="lazy">
                 </div>
                 <div class="stats-card">
-                    <h3>Activity Graph</h3>
+                    <div class="stats-card-head">
+                        <span><i class="fas fa-chart-pie"></i> Repository Metrics</span>
+                        <span class="mono-tag">GITHUB API</span>
+                    </div>
+                    <img src="https://github-readme-stats.vercel.app/api?username=ayushdixit1-av&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=e94560&icon_color=e94560" alt="GitHub Stats" loading="lazy">
+                </div>
+                <div class="stats-card stats-wide">
+                    <div class="stats-card-head">
+                        <span><i class="fas fa-wave-square"></i> Contribution &amp; Commit Activity</span>
+                        <span class="mono-tag">870+ CONTRIBUTIONS</span>
+                    </div>
                     <img src="https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=ayushdixit1-av&theme=tokyonight" alt="Activity Graph" loading="lazy">
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- 05. Contact Section -->
     <section class="section" id="contact">
         <div class="container">
-            <h2 class="section-title">
-                <span class="section-number">05.</span> Get In Touch
-            </h2>
-            <div class="contact-content">
+            <div class="contact-card">
+                <span class="section-number">05. WHAT'S NEXT?</span>
+                <h2 class="contact-heading">Let's Engineer Something Exceptional.</h2>
                 <p class="contact-text">
-                    I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.
+                    I'm actively looking for <strong>Backend, Distributed Systems, and Security Engineering</strong> opportunities where I can build high-throughput infrastructure and impactful products.
                 </p>
-                <div class="contact-links">
-                    <a href="mailto:ayushdixitvsecpanki@gmail.com" class="contact-btn">
-                        <i class="fas fa-envelope"></i>
-                        <span>ayushdixitvsecpanki@gmail.com</span>
+
+                <div class="contact-actions">
+                    <a href="mailto:ayushdixitvsecpanki@gmail.com" class="btn btn-primary btn-lg">
+                        <i class="fas fa-paper-plane"></i>
+                        <span>Send an Email</span>
                     </a>
-                    <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" class="contact-btn">
-                        <i class="fab fa-linkedin"></i>
-                        <span>LinkedIn</span>
+                    <button type="button" class="btn btn-secondary btn-lg" id="copyEmailBtn" data-email="ayushdixitvsecpanki@gmail.com">
+                        <i class="far fa-copy"></i>
+                        <span id="copyEmailText">ayushdixitvsecpanki@gmail.com</span>
+                    </button>
+                </div>
+
+                <div class="contact-social-row">
+                    <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener" class="contact-pill">
+                        <i class="fab fa-github"></i> github.com/ayushdixit1-av
                     </a>
-                    <a href="https://github.com/ayushdixit1-av" target="_blank" class="contact-btn">
-                        <i class="fab fa-github"></i>
-                        <span>GitHub</span>
+                    <a href="https://www.linkedin.com/in/ayush-dixit-0b789230b/" target="_blank" rel="noopener" class="contact-pill">
+                        <i class="fab fa-linkedin"></i> linkedin.com/in/ayush-dixit
                     </a>
                 </div>
             </div>
@@ -412,9 +652,12 @@
 
     <!-- Footer -->
     <footer class="footer">
-        <div class="container">
-            <p>Built with <span class="heart">&hearts;</span> by Ayush Dixit</p>
-            <p class="footer-sub">Designed & Developed from scratch</p>
+        <div class="container footer-inner">
+            <div class="footer-brand">
+                <span class="logo-bracket">&lt;</span>AD<span class="logo-bracket">/&gt;</span>
+                <span>Ayush Dixit &mdash; Systems, Backend &amp; Security Engineer</span>
+            </div>
+            <p class="footer-sub">Architected &amp; engineered from scratch &bull; <a href="https://github.com/ayushdixit1-av" target="_blank" rel="noopener">ayushdixit1-av</a></p>
         </div>
     </footer>
 

@@ -1,11 +1,10 @@
-// ===== Typing Effect =====
+// ===== Terminal Typing Effect =====
 const typingTexts = [
-    "Backend Developer",
-    "ML Engineer",
-    "Security Researcher",
-    "Building ML-powered systems",
-    "Transformer Enthusiast",
-    "Distributed Systems"
+    "nexgate --port 8080 --workers 16 --rate-limit redis",
+    "tinylite-server --protocol resp --aof-fsync everysec",
+    "task-worker --queues high,default --dlq-enabled",
+    "os3c-scan --engines nuclei,nmap,subfinder,katana",
+    "Building low-latency distributed backend systems"
 ];
 
 let textIndex = 0;
@@ -14,6 +13,7 @@ let isDeleting = false;
 const typingElement = document.getElementById('typingText');
 
 function typeText() {
+    if (!typingElement) return;
     const currentText = typingTexts[textIndex];
 
     if (isDeleting) {
@@ -24,78 +24,137 @@ function typeText() {
         charIndex++;
     }
 
-    let typeSpeed = isDeleting ? 50 : 100;
+    let typeSpeed = isDeleting ? 28 : 55;
 
     if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 2000;
+        typeSpeed = 2200;
         isDeleting = true;
     } else if (isDeleting && charIndex === 0) {
         isDeleting = false;
         textIndex = (textIndex + 1) % typingTexts.length;
-        typeSpeed = 500;
+        typeSpeed = 400;
     }
 
     setTimeout(typeText, typeSpeed);
 }
 
-// ===== Navbar Scroll Effect =====
-const navbar = document.getElementById('navbar');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-    } else {
-        navbar.classList.remove('scrolled');
+// ===== Interactive Multi-Tab Code Window =====
+const tabMeta = {
+    nexgate: {
+        metric: "THROUGHPUT: 18,400 req/s • P99: 1.74ms",
+        lang: "Java 21 • Netty NIO"
+    },
+    tinylite: {
+        metric: "PROTOCOL: RESP2/3 • EVICTION: O(log n) Heap",
+        lang: "Python 3.12 • Asyncio"
+    },
+    queue: {
+        metric: "WORKERS: 8 ACTIVE • RETRY: Exp Backoff + DLQ",
+        lang: "Python • Redis Streams"
     }
-});
-
-// ===== Mobile Menu Toggle =====
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.querySelector('.nav-links');
-
-hamburger.addEventListener('click', () => {
-    navLinks.classList.toggle('active');
-    hamburger.classList.toggle('active');
-});
-
-// Close menu on link click
-document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
-        hamburger.classList.remove('active');
-    });
-});
-
-// ===== Scroll Animations =====
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
 };
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
+function initCodeTabs() {
+    const tabs = document.querySelectorAll('.code-tab');
+    const panes = document.querySelectorAll('.code-pane');
+    const metricEl = document.getElementById('terminalMetric');
+    const langEl = document.getElementById('terminalLang');
+
+    tabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const target = tab.getAttribute('data-tab');
+
+            tabs.forEach(t => t.classList.remove('active'));
+            panes.forEach(p => p.classList.remove('active'));
+
+            tab.classList.add('active');
+            const activePane = document.getElementById(`tab-${target}`);
+            if (activePane) activePane.classList.add('active');
+
+            if (tabMeta[target]) {
+                if (metricEl) metricEl.textContent = tabMeta[target].metric;
+                if (langEl) langEl.textContent = tabMeta[target].lang;
+            }
+        });
+    });
+}
+
+// ===== Project Category Filter Pills =====
+function initProjectFilters() {
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const cards = document.querySelectorAll('#projectsGrid .project-card');
+
+    filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+            const filter = btn.getAttribute('data-filter');
+
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            cards.forEach(card => {
+                const category = card.getAttribute('data-category');
+                if (filter === 'all' || category === filter) {
+                    card.classList.remove('hidden-card');
+                } else {
+                    card.classList.add('hidden-card');
+                }
+            });
+        });
+    });
+}
+
+// ===== One-Click Copy Email Button =====
+function initCopyEmail() {
+    const copyBtn = document.getElementById('copyEmailBtn');
+    const copyText = document.getElementById('copyEmailText');
+    if (!copyBtn || !copyText) return;
+
+    copyBtn.addEventListener('click', async () => {
+        const email = copyBtn.getAttribute('data-email') || 'ayushdixitvsecpanki@gmail.com';
+        try {
+            await navigator.clipboard.writeText(email);
+            const original = copyText.textContent;
+            copyText.textContent = 'Copied to clipboard!';
+            copyBtn.style.borderColor = '#10b981';
+            setTimeout(() => {
+                copyText.textContent = original;
+                copyBtn.style.borderColor = '';
+            }, 2200);
+        } catch (_) {
+            window.location.href = `mailto:${email}`;
         }
     });
-}, observerOptions);
+}
 
-// Observe all animatable elements
-document.querySelectorAll('.section-title, .skill-card, .project-card, .stats-card, .highlight-item, .contact-btn').forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-});
+// ===== Ambient Cursor Spotlight =====
+function initCursorGlow() {
+    const glow = document.getElementById('cursorGlow');
+    if (!glow) return;
 
-// ===== Active Nav Link on Scroll =====
+    window.addEventListener('mousemove', (e) => {
+        glow.style.left = `${e.clientX}px`;
+        glow.style.top = `${e.clientY}px`;
+    });
+}
+
+// ===== Navbar Scroll & Active Section Highlight =====
+const navbar = document.getElementById('navbar');
 const sections = document.querySelectorAll('section[id]');
-const navLinksAll = document.querySelectorAll('.nav-links a');
+const navLinksAll = document.querySelectorAll('.nav-links a[href^="#"]');
 
 window.addEventListener('scroll', () => {
+    if (navbar) {
+        if (window.scrollY > 40) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+    }
+
     let current = '';
-
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 150;
+        const sectionTop = section.offsetTop - 160;
         const sectionHeight = section.offsetHeight;
-
         if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
             current = section.getAttribute('id');
         }
@@ -109,74 +168,56 @@ window.addEventListener('scroll', () => {
     });
 });
 
-// ===== Matrix Rain Background Effect =====
-function createMatrixRain() {
-    const canvas = document.createElement('canvas');
-    const ctx = canvas.getContext('2d');
-    const container = document.getElementById('matrixRain');
+// ===== Mobile Menu Toggle =====
+const hamburger = document.getElementById('hamburger');
+const navLinks = document.getElementById('navLinks');
 
-    if (!container) return;
+if (hamburger && navLinks) {
+    hamburger.addEventListener('click', () => {
+        navLinks.classList.toggle('active');
+        hamburger.classList.toggle('active');
+    });
 
-    container.appendChild(canvas);
-
-    function resize() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-    }
-
-    resize();
-    window.addEventListener('resize', resize);
-
-    const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789@#$%^&*(){}[]|;:,.<>?/~`';
-    const fontSize = 14;
-    const columns = Math.floor(canvas.width / fontSize);
-    const drops = Array(columns).fill(1);
-
-    function draw() {
-        ctx.fillStyle = 'rgba(10, 10, 15, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = '#e94560';
-        ctx.font = `${fontSize}px monospace`;
-
-        for (let i = 0; i < drops.length; i++) {
-            const text = chars[Math.floor(Math.random() * chars.length)];
-            ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-            if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
-                drops[i] = 0;
-            }
-            drops[i]++;
-        }
-    }
-
-    setInterval(draw, 33);
+    document.querySelectorAll('.nav-links a').forEach(link => {
+        link.addEventListener('click', () => {
+            navLinks.classList.remove('active');
+            hamburger.classList.remove('active');
+        });
+    });
 }
 
-// ===== Smooth Scroll for CTA Buttons =====
+// ===== IntersectionObserver Reveal Animations =====
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.section-header, .about-narrative, .pillar-card, .skill-card, .project-card, .stats-card, .contact-card').forEach(el => {
+    el.classList.add('fade-in');
+    observer.observe(el);
+});
+
+// ===== Smooth Scroll for Anchor Links =====
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
-        e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
+        const href = this.getAttribute('href');
+        if (!href || href === '#') return;
+        const target = document.querySelector(href);
         if (target) {
+            e.preventDefault();
             target.scrollIntoView({ behavior: 'smooth' });
         }
     });
 });
 
-// ===== Initialize =====
+// ===== Initialize Everything on DOM Ready =====
 document.addEventListener('DOMContentLoaded', () => {
     typeText();
-    createMatrixRain();
-});
-
-// ===== Parallax on Hero =====
-window.addEventListener('mousemove', (e) => {
-    const hero = document.querySelector('.hero-visual');
-    if (!hero) return;
-
-    const x = (e.clientX / window.innerWidth - 0.5) * 20;
-    const y = (e.clientY / window.innerHeight - 0.5) * 20;
-
-    hero.style.transform = `translate(${x}px, ${y}px)`;
+    initCodeTabs();
+    initProjectFilters();
+    initCopyEmail();
+    initCursorGlow();
 });

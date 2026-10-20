@@ -1,223 +1,207 @@
-// ===== Terminal Typing Effect =====
-const typingTexts = [
-    "nexgate --port 8080 --workers 16 --rate-limit redis",
-    "tinylite-server --protocol resp --aof-fsync everysec",
-    "task-worker --queues high,default --dlq-enabled",
-    "os3c-scan --engines nuclei,nmap,subfinder,katana",
-    "Building low-latency distributed backend systems"
-];
+// ===== 1. Sliding Magnetic Pill Navbar Indicator =====
+function initNavIndicator() {
+    const navItems = document.getElementById('navItems');
+    const indicator = document.getElementById('navIndicator');
+    const links = document.querySelectorAll('.nav-link');
+    if (!navItems || !indicator || !links.length) return;
 
-let textIndex = 0;
-let charIndex = 0;
-let isDeleting = false;
-const typingElement = document.getElementById('typingText');
-
-function typeText() {
-    if (!typingElement) return;
-    const currentText = typingTexts[textIndex];
-
-    if (isDeleting) {
-        typingElement.textContent = currentText.substring(0, charIndex - 1);
-        charIndex--;
-    } else {
-        typingElement.textContent = currentText.substring(0, charIndex + 1);
-        charIndex++;
+    function moveIndicator(el) {
+        if (!el) return;
+        const parentRect = navItems.getBoundingClientRect();
+        const rect = el.getBoundingClientRect();
+        indicator.style.width = `${rect.width}px`;
+        indicator.style.transform = `translateX(${rect.left - parentRect.left}px)`;
     }
 
-    let typeSpeed = isDeleting ? 28 : 55;
+    // Initial position
+    const activeLink = document.querySelector('.nav-link.active') || links[0];
+    moveIndicator(activeLink);
 
-    if (!isDeleting && charIndex === currentText.length) {
-        typeSpeed = 2200;
-        isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-        isDeleting = false;
-        textIndex = (textIndex + 1) % typingTexts.length;
-        typeSpeed = 400;
-    }
+    links.forEach(link => {
+        link.addEventListener('mouseenter', () => moveIndicator(link));
+    });
 
-    setTimeout(typeText, typeSpeed);
+    navItems.addEventListener('mouseleave', () => {
+        const currentActive = document.querySelector('.nav-link.active') || links[0];
+        moveIndicator(currentActive);
+    });
+
+    window.addEventListener('resize', () => {
+        const currentActive = document.querySelector('.nav-link.active') || links[0];
+        moveIndicator(currentActive);
+    });
+
+    // Update active link on scroll
+    const sections = document.querySelectorAll('section[id]');
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(sec => {
+            const top = sec.offsetTop - 220;
+            if (window.scrollY >= top) {
+                current = sec.getAttribute('id');
+            }
+        });
+
+        if (current) {
+            links.forEach(l => {
+                l.classList.toggle('active', l.getAttribute('data-section') === current);
+            });
+            const nowActive = document.querySelector('.nav-link.active');
+            if (nowActive) moveIndicator(nowActive);
+        }
+    }, { passive: true });
 }
 
-// ===== Interactive Multi-Tab Code Window =====
-const tabMeta = {
-    nexgate: {
-        metric: "THROUGHPUT: 18,400 req/s • P99: 1.74ms",
-        lang: "Java 21 • Netty NIO"
-    },
-    tinylite: {
-        metric: "PROTOCOL: RESP2/3 • EVICTION: O(log n) Heap",
-        lang: "Python 3.12 • Asyncio"
-    },
-    queue: {
-        metric: "WORKERS: 8 ACTIVE • RETRY: Exp Backoff + DLQ",
-        lang: "Python • Redis Streams"
-    }
+// ===== 2. Interactive Terminal Tabs with Sliding Glider =====
+const tabMetaMap = {
+    nexgate: "Java 21 • <1.8ms P99",
+    tinylite: "Python Asyncio • RESP2/3",
+    queue: "Redis • Exp Backoff + DLQ"
 };
 
-function initCodeTabs() {
-    const tabs = document.querySelectorAll('.code-tab');
-    const panes = document.querySelectorAll('.code-pane');
-    const metricEl = document.getElementById('terminalMetric');
-    const langEl = document.getElementById('terminalLang');
+function initTerminalTabs() {
+    const tabs = document.querySelectorAll('.term-tab');
+    const panes = document.querySelectorAll('.term-pane');
+    const glider = document.getElementById('termTabGlider');
+    const metaBadge = document.getElementById('termMeta');
+    if (!tabs.length) return;
+
+    function positionGlider(tab) {
+        if (!glider || !tab) return;
+        const parentRect = tab.parentElement.getBoundingClientRect();
+        const rect = tab.getBoundingClientRect();
+        glider.style.width = `${rect.width}px`;
+        glider.style.transform = `translateX(${rect.left - parentRect.left}px)`;
+    }
+
+    positionGlider(document.querySelector('.term-tab.active') || tabs[0]);
+    window.addEventListener('resize', () => {
+        positionGlider(document.querySelector('.term-tab.active') || tabs[0]);
+    });
 
     tabs.forEach(tab => {
         tab.addEventListener('click', () => {
             const target = tab.getAttribute('data-tab');
-
             tabs.forEach(t => t.classList.remove('active'));
             panes.forEach(p => p.classList.remove('active'));
 
             tab.classList.add('active');
-            const activePane = document.getElementById(`tab-${target}`);
-            if (activePane) activePane.classList.add('active');
+            positionGlider(tab);
 
-            if (tabMeta[target]) {
-                if (metricEl) metricEl.textContent = tabMeta[target].metric;
-                if (langEl) langEl.textContent = tabMeta[target].lang;
+            const targetPane = document.getElementById(`pane-${target}`);
+            if (targetPane) targetPane.classList.add('active');
+            if (metaBadge && tabMetaMap[target]) {
+                metaBadge.textContent = tabMetaMap[target];
             }
         });
     });
 }
 
-// ===== Project Category Filter Pills =====
-function initProjectFilters() {
-    const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('#projectsGrid .project-card');
+// ===== 3. Smooth Architecture Accordion Drawers =====
+function initArchitectureDrawers() {
+    const workItems = document.querySelectorAll('.work-item');
+    workItems.forEach((item, idx) => {
+        const toggle = item.querySelector('.arch-toggle');
+        if (!toggle) return;
 
-    filterBtns.forEach(btn => {
-        btn.addEventListener('click', () => {
-            const filter = btn.getAttribute('data-filter');
+        // Open the first project's architecture drawer by default for immediate visual polish
+        if (idx === 0) {
+            item.classList.add('is-open');
+            toggle.setAttribute('aria-expanded', 'true');
+        }
 
-            filterBtns.forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
+        toggle.addEventListener('click', () => {
+            const isOpen = item.classList.toggle('is-open');
+            toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+    });
+}
 
-            cards.forEach(card => {
-                const category = card.getAttribute('data-category');
-                if (filter === 'all' || category === filter) {
-                    card.classList.remove('hidden-card');
+// ===== 4. Smooth Blur-Scale Category Filter =====
+function initWorkFilter() {
+    const chips = document.querySelectorAll('.filter-chip');
+    const items = document.querySelectorAll('.work-item');
+
+    chips.forEach(chip => {
+        chip.addEventListener('click', () => {
+            const filter = chip.getAttribute('data-filter');
+            chips.forEach(c => c.classList.remove('active'));
+            chip.classList.add('active');
+
+            items.forEach(item => {
+                const cat = item.getAttribute('data-category');
+                if (filter === 'all' || cat === filter) {
+                    item.classList.remove('is-filtered-out');
                 } else {
-                    card.classList.add('hidden-card');
+                    item.classList.add('is-filtered-out');
                 }
             });
         });
     });
 }
 
-// ===== One-Click Copy Email Button =====
-function initCopyEmail() {
-    const copyBtn = document.getElementById('copyEmailBtn');
-    const copyText = document.getElementById('copyEmailText');
-    if (!copyBtn || !copyText) return;
-
-    copyBtn.addEventListener('click', async () => {
-        const email = copyBtn.getAttribute('data-email') || 'ayushdixitvsecpanki@gmail.com';
-        try {
-            await navigator.clipboard.writeText(email);
-            const original = copyText.textContent;
-            copyText.textContent = 'Copied to clipboard!';
-            copyBtn.style.borderColor = '#10b981';
-            setTimeout(() => {
-                copyText.textContent = original;
-                copyBtn.style.borderColor = '';
-            }, 2200);
-        } catch (_) {
-            window.location.href = `mailto:${email}`;
-        }
-    });
-}
-
-// ===== Ambient Cursor Spotlight =====
-function initCursorGlow() {
-    const glow = document.getElementById('cursorGlow');
-    if (!glow) return;
-
-    window.addEventListener('mousemove', (e) => {
-        glow.style.left = `${e.clientX}px`;
-        glow.style.top = `${e.clientY}px`;
-    });
-}
-
-// ===== Navbar Scroll & Active Section Highlight =====
-const navbar = document.getElementById('navbar');
-const sections = document.querySelectorAll('section[id]');
-const navLinksAll = document.querySelectorAll('.nav-links a[href^="#"]');
-
-window.addEventListener('scroll', () => {
-    if (navbar) {
-        if (window.scrollY > 40) {
-            navbar.classList.add('scrolled');
-        } else {
-            navbar.classList.remove('scrolled');
-        }
-    }
-
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 160;
-        const sectionHeight = section.offsetHeight;
-        if (window.scrollY >= sectionTop && window.scrollY < sectionTop + sectionHeight) {
-            current = section.getAttribute('id');
-        }
-    });
-
-    navLinksAll.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
-
-// ===== Mobile Menu Toggle =====
-const hamburger = document.getElementById('hamburger');
-const navLinks = document.getElementById('navLinks');
-
-if (hamburger && navLinks) {
-    hamburger.addEventListener('click', () => {
-        navLinks.classList.toggle('active');
-        hamburger.classList.toggle('active');
-    });
-
-    document.querySelectorAll('.nav-links a').forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('active');
+// ===== 5. Per-Card Radial Spotlight Hover Effect =====
+function initSpotlightCards() {
+    const cards = document.querySelectorAll('.spotlight-card');
+    cards.forEach(card => {
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
+            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
         });
     });
 }
 
-// ===== IntersectionObserver Reveal Animations =====
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-        }
+// ===== 6. Scroll Reveal & Top Progress Bar =====
+function initScrollChoreography() {
+    const progressBar = document.getElementById('scrollProgress');
+    window.addEventListener('scroll', () => {
+        if (!progressBar) return;
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+        progressBar.style.width = `${scrolled}%`;
+    }, { passive: true });
+
+    const revealObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('is-visible');
+            }
+        });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.reveal').forEach(section => {
+        revealObserver.observe(section);
     });
-}, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+}
 
-document.querySelectorAll('.section-header, .about-narrative, .pillar-card, .skill-card, .project-card, .stats-card, .contact-card').forEach(el => {
-    el.classList.add('fade-in');
-    observer.observe(el);
-});
-
-// ===== Smooth Scroll for Anchor Links =====
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const href = this.getAttribute('href');
-        if (!href || href === '#') return;
-        const target = document.querySelector(href);
-        if (target) {
-            e.preventDefault();
-            target.scrollIntoView({ behavior: 'smooth' });
-        }
+// ===== 7. One-Click Copy Email Buttons =====
+function initCopyButtons() {
+    document.querySelectorAll('.copy-trigger').forEach(btn => {
+        btn.addEventListener('click', async () => {
+            const email = btn.getAttribute('data-email') || 'ayushdixitvsecpanki@gmail.com';
+            const label = btn.querySelector('.copy-label');
+            if (!label) return;
+            const prev = label.textContent;
+            try {
+                await navigator.clipboard.writeText(email);
+                label.textContent = 'Copied!';
+                setTimeout(() => { label.textContent = prev; }, 2000);
+            } catch (_) {
+                window.location.href = `mailto:${email}`;
+            }
+        });
     });
-});
+}
 
-// ===== Initialize Everything on DOM Ready =====
+// ===== Initialize All Choreographed Interactions =====
 document.addEventListener('DOMContentLoaded', () => {
-    typeText();
-    initCodeTabs();
-    initProjectFilters();
-    initCopyEmail();
-    initCursorGlow();
+    initNavIndicator();
+    initTerminalTabs();
+    initArchitectureDrawers();
+    initWorkFilter();
+    initSpotlightCards();
+    initScrollChoreography();
+    initCopyButtons();
 });

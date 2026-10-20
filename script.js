@@ -1,4 +1,29 @@
-// ===== 1. Sliding Magnetic Pill Navbar Indicator =====
+// ===== 1. Paper <-> Carbon Theme Switcher =====
+function initThemeSwitcher() {
+    const html = document.documentElement;
+    const btn = document.getElementById('themeSwitch');
+    const label = document.getElementById('themeLabel');
+    const saved = localStorage.getItem('ad-theme') || 'paper';
+
+    function applyTheme(theme) {
+        html.setAttribute('data-theme', theme);
+        if (label) {
+            label.textContent = theme === 'paper' ? 'Carbon' : 'Paper';
+        }
+        localStorage.setItem('ad-theme', theme);
+    }
+
+    applyTheme(saved);
+
+    if (btn) {
+        btn.addEventListener('click', () => {
+            const current = html.getAttribute('data-theme') === 'carbon' ? 'paper' : 'carbon';
+            applyTheme(current);
+        });
+    }
+}
+
+// ===== 2. Sliding Underline Navbar Indicator =====
 function initNavIndicator() {
     const navItems = document.getElementById('navItems');
     const indicator = document.getElementById('navIndicator');
@@ -9,11 +34,10 @@ function initNavIndicator() {
         if (!el) return;
         const parentRect = navItems.getBoundingClientRect();
         const rect = el.getBoundingClientRect();
-        indicator.style.width = `${rect.width}px`;
-        indicator.style.transform = `translateX(${rect.left - parentRect.left}px)`;
+        indicator.style.width = `${rect.width - 16}px`;
+        indicator.style.transform = `translateX(${rect.left - parentRect.left + 8}px)`;
     }
 
-    // Initial position
     const activeLink = document.querySelector('.nav-link.active') || links[0];
     moveIndicator(activeLink);
 
@@ -31,7 +55,6 @@ function initNavIndicator() {
         moveIndicator(currentActive);
     });
 
-    // Update active link on scroll
     const sections = document.querySelectorAll('section[id]');
     window.addEventListener('scroll', () => {
         let current = '';
@@ -52,7 +75,7 @@ function initNavIndicator() {
     }, { passive: true });
 }
 
-// ===== 2. Interactive Terminal Tabs with Sliding Glider =====
+// ===== 3. Interactive Terminal Tabs with Sliding Glider =====
 const tabMetaMap = {
     nexgate: "Java 21 • <1.8ms P99",
     tinylite: "Python Asyncio • RESP2/3",
@@ -97,14 +120,13 @@ function initTerminalTabs() {
     });
 }
 
-// ===== 3. Smooth Architecture Accordion Drawers =====
+// ===== 4. Smooth Architecture Accordion Drawers =====
 function initArchitectureDrawers() {
     const workItems = document.querySelectorAll('.work-item');
     workItems.forEach((item, idx) => {
         const toggle = item.querySelector('.arch-toggle');
         if (!toggle) return;
 
-        // Open the first project's architecture drawer by default for immediate visual polish
         if (idx === 0) {
             item.classList.add('is-open');
             toggle.setAttribute('aria-expanded', 'true');
@@ -117,7 +139,7 @@ function initArchitectureDrawers() {
     });
 }
 
-// ===== 4. Smooth Blur-Scale Category Filter =====
+// ===== 5. Category Filter =====
 function initWorkFilter() {
     const chips = document.querySelectorAll('.filter-chip');
     const items = document.querySelectorAll('.work-item');
@@ -136,18 +158,6 @@ function initWorkFilter() {
                     item.classList.add('is-filtered-out');
                 }
             });
-        });
-    });
-}
-
-// ===== 5. Per-Card Radial Spotlight Hover Effect =====
-function initSpotlightCards() {
-    const cards = document.querySelectorAll('.spotlight-card');
-    cards.forEach(card => {
-        card.addEventListener('mousemove', (e) => {
-            const rect = card.getBoundingClientRect();
-            card.style.setProperty('--mouse-x', `${e.clientX - rect.left}px`);
-            card.style.setProperty('--mouse-y', `${e.clientY - rect.top}px`);
         });
     });
 }
@@ -186,7 +196,7 @@ function initCopyButtons() {
             const prev = label.textContent;
             try {
                 await navigator.clipboard.writeText(email);
-                label.textContent = 'Copied!';
+                label.textContent = 'Copied to clipboard!';
                 setTimeout(() => { label.textContent = prev; }, 2000);
             } catch (_) {
                 window.location.href = `mailto:${email}`;
@@ -195,13 +205,12 @@ function initCopyButtons() {
     });
 }
 
-// ===== Initialize All Choreographed Interactions =====
 document.addEventListener('DOMContentLoaded', () => {
+    initThemeSwitcher();
     initNavIndicator();
     initTerminalTabs();
     initArchitectureDrawers();
     initWorkFilter();
-    initSpotlightCards();
     initScrollChoreography();
     initCopyButtons();
 });
